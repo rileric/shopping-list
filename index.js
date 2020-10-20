@@ -24,9 +24,11 @@ function createItemElements( itemName) {
 function handleAddItem() {
   $('#js-shopping-list-form').on('submit', event => {
 
+    console.log(event.currentTarget);
+    console.log(this);
+    
     event.preventDefault();
-    const itemName = $(this).find('#shopping-list-entry').val();
-    console.log("ItemName = " + itemName); //TODO remove
+    const itemName = $('#js-shopping-list-form').find('#shopping-list-entry').val();
 
     let itemToAddString = createItemElements(itemName);
     $('.shopping-list').append(itemToAddString);
@@ -36,34 +38,25 @@ function handleAddItem() {
 
 // for each item in list (look for li parent of current target-button)
 //     handle check (toggle "shopping-item__checked" class)
-function handleCheckButton() {
-  $('.shopping-item-toggle').on('click', event => {
-    console.log("Check button clicked"); // TODO remove
-    let parentListItem = $(this).parent('li');
-    let itemName = parentListItem.find('.shopping-item');
-   
-    itemName.toggle('.shopping-item__checked');
- });
-}
-
 //     handle delete (aka remove() which also removes child elements)
-function handleDeleteButton() {
-  $('.shopping-item-delete').on('click', event => {
-
-    console.log("Delete button clicked"); // TODO remove
-    let parentListItem = $(this).parent('li');
-    parentListItem.remove();
-  });
-}
-
 $(function() {
 
     // handle "add item"
     handleAddItem();
 
     // handle delete button
-    handleDeleteButton();
+    $('ul').on('click', '.shopping-item-delete', event => {
+
+      let parentListItem = $(event.currentTarget).parent().parent(); // button > div .shopping-item-controls > li
+      parentListItem.remove();
+    });
 
     // handle check button
-    handleCheckButton();
+    $('ul').on('click', '.shopping-item-toggle', event => {
+
+      let parentListItem = $(event.currentTarget).parent().parent(); // button > div .shopping-item-controls > li
+      let itemName = parentListItem.find('.shopping-item');
+     
+      itemName.toggleClass('shopping-item__checked');
+   });
 });
