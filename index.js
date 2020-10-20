@@ -16,7 +16,7 @@
 function createItemElements( itemName) {
 
     let preName = '<li><span class="shopping-item">';
-    let postName = '</span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button><button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>';
+    let postName = '</span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button> <button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>';
 
     return (preName + itemName + postName); // return block of HTML to append
 }
@@ -26,7 +26,7 @@ function handleAddItem() {
 
     console.log(event.currentTarget);
     console.log(this);
-    
+
     event.preventDefault();
     const itemName = $('#js-shopping-list-form').find('#shopping-list-entry').val();
 
