@@ -25,7 +25,7 @@ function createItemElements( itemName) {
 $(function() {
 
     // handle "add item"
-    $('#shopping-list-entry').submit( event => {
+    $('#js-shopping-list-form').on('submit', event => {
 
         event.preventDefault();
         const itemName = $(this).find('#shopping-list-entry').val();
@@ -33,5 +33,12 @@ $(function() {
         let itemToAddString = createItemElements(itemName);
         $('.shopping-list').append(itemToAddString);
 
+    })
+
+    // handle delete button
+    $('.shopping-item-delete').on('click', event => {
+
+        const parentListItem = this.parent( 'li');
+        parentListItem.remove();
     })
 })
