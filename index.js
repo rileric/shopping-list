@@ -38,7 +38,15 @@ $(function() {
     // handle delete button
     $('.shopping-item-delete').on('click', event => {
 
-        const parentListItem = this.parent( 'li');
+        let parentListItem = this.parent('li');
         parentListItem.remove();
+    })
+
+    // handle check button
+    $('.shopping-item-toggle').on('click', event => {
+       let parentListItem = this.parent('li');
+       let itemName = parentListItem.find('.shopping-item');
+      
+       itemName.toggle('.shopping-item__checked');
     })
 })
