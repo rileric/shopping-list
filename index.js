@@ -24,9 +24,6 @@ function createItemElements( itemName) {
 function handleAddItem() {
   $('#js-shopping-list-form').on('submit', event => {
 
-    console.log(event.currentTarget);
-    console.log(this);
-
     event.preventDefault();
     const itemName = $('#js-shopping-list-form').find('#shopping-list-entry').val();
 
